@@ -7,6 +7,18 @@
 	"item": [
 		{
 			"name": "/totp/secret",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fa7b75d-94f9-4b3d-92f8-2bded2ef5105",
+						"exec": [
+							"pm.globals.set(\"secret\", jsonData.secret);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -29,7 +41,18 @@
 			"name": "/totp/validate",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"secret\": \"\"{{secret}}\"\"\n    \"token\": \"the-token-from-the-aughenticator-scaned-from-the-qrcode\"\n}"
+				},
 				"url": {
 					"raw": "http://{{server}}:3000/totp/secret",
 					"protocol": "http",
