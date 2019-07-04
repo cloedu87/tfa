@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "0a4cae27-928a-48cb-afe5-4f1226286f99",
+		"name": "2fa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/totp/secret",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{server}}:3000/totp/secret",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"port": "3000",
+					"path": [
+						"totp",
+						"secret"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/totp/validate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{server}}:3000/totp/secret",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"port": "3000",
+					"path": [
+						"totp",
+						"secret"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

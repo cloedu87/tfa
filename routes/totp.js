@@ -5,7 +5,10 @@ const QRCode = require('qrcode');
 
 let globalTFA = {};
 
-router.get('/secret', function (req, res, next) {
+//todo: two options:
+//  1. make urls dynamic and use hashed-user-id in the path to map user to secret and store to databaser
+//  2. get user-identifier with request body and and also map secret to user in database
+router.post('/secret', function (req, res, next) {
 
     let secret = Speakeasy.generateSecret({length: 10});
 
@@ -28,7 +31,7 @@ router.get('/generate', function (req, res, next) {
 router.get('/validate', function (req, res, next) {
 
 
-    //get secret-Object from database. it should be assosiated with the user, and NOT red from the request.
+    //todo: get secret-Object from database. it should be assosiated with the user, and NOT red from the request.
     res.send({
         "valid": Speakeasy.totp.verify({
             secret: req.body.secret,
@@ -41,6 +44,7 @@ router.get('/validate', function (req, res, next) {
 
 router.get('/process', function (req, res, next) {
 
+    //todo: move generate secret to the route /secret.
     //do not use blanks or special chars in this strings, because urlencoding doesn't work properly!!
     let secret = Speakeasy.generateSecret({
         length: 20,
@@ -49,6 +53,7 @@ router.get('/process', function (req, res, next) {
         issuer: "theusersapp"
     });
 
+    //todo: implement database and get infos from database
     //do not use blanks or special chars in this strings, because urlencoding doesn't work properly!!
     let url = Speakeasy.otpauthURL({
         encoding: "base32",
