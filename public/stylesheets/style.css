@@ -1,0 +1,22 @@
+.app {
+  text-align: center;
+  font-family: monospace;
+}
+
+.common {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30px + 2vmin);
+}
+
+.header {
+  background-color: white;
+  color: #282c34;
+}
+#main-info {
+  border: 0.3vmin solid #282c34;
+  padding: 20px;
+}
